@@ -177,6 +177,8 @@
      <Compile Include="Assets\Packages\GoogleVR\Scripts\Utilities\Internal\GvrCursorHelper.cs" />
      <Compile Include="Assets\Packages\GoogleVR\Scripts\Utilities\Internal\SuppressMemoryAllocationErrorAttribute.cs" />
      <Compile Include="Assets\Packages\GoogleVR\Scripts\Video\GvrVideoPlayerTexture.cs" />
+     <Compile Include="Assets\Scripts\FurnitureInteraction.cs" />
+     <Compile Include="Assets\Scripts\GazeInteraction.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <None Include="Assets\Packages\GoogleVR\Shaders\GvrUIOverlayFont.shader" />
      <None Include="Assets\Packages\GoogleVR\Shaders\GvrAdditiveOverlay.shader" />
@@ -194,6 +196,7 @@
      <None Include="Assets\Packages\GoogleVR\Shaders\GvrUIOverlay.shader" />
      <None Include="Assets\Packages\GoogleVR\Plugins\Android\proguard-gvr.txt" />
      <None Include="Assets\Packages\GoogleVR\Plugins\Android\AndroidManifest-Cardboard.xml" />
+     <None Include="Assets\Models\FoodAndGrocery\Info.txt" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/Andrej/Documents/Unity Projects/Pizza Chef/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
