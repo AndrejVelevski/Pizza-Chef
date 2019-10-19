@@ -24,6 +24,8 @@ public class LiftButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public Vector3 platformFinalPosition;
 
+    Rigidbody rb;
+
     void Start()
     {
         rend = GetComponent<Renderer>();
@@ -34,7 +36,9 @@ public class LiftButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         platformPosition = movingPlatform.GetComponent<Transform>();
         platformStartingPosition = movingPlatform.GetComponent<Transform>().position;
-        platformFinalPosition = new Vector3(platformPosition.position.x, platformPosition.position.y + 5, platformPosition.position.z);
+        //platformFinalPosition = new Vector3(platformPosition.position.x, platformPosition.position.y + 5, platformPosition.position.z);
+
+        rb = movingPlatform.GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -98,17 +102,19 @@ public class LiftButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private void movePlatform()
     {
         if(movingUp){
-            platformPosition.position = Vector3.MoveTowards(platformPosition.position, platformFinalPosition, platformMovingSpeed * Time.deltaTime);
+            //platformPosition.position = Vector3.MoveTowards(platformPosition.position, platformFinalPosition, platformMovingSpeed * Time.deltaTime);
+            rb.velocity = new Vector3(0, platformMovingSpeed, 0);
         }
         else{
-            platformPosition.position = Vector3.MoveTowards(platformPosition.position, platformStartingPosition, platformMovingSpeed * Time.deltaTime);
+            //platformPosition.position = Vector3.MoveTowards(platformPosition.position, platformStartingPosition, platformMovingSpeed * Time.deltaTime);
+            rb.velocity = new Vector3(0, -platformMovingSpeed, 0);
         }    
         
-        if(platformPosition.position == platformFinalPosition){
+        if(platformPosition.position.y >= platformFinalPosition.y){
             Debug.Log("PIZZA SOLD!");
             movingUp = false;
         }
-        else if(platformPosition.position == platformStartingPosition){
+        else if(platformPosition.position.y <= platformStartingPosition.y){
             Debug.Log("Lift on starting position!");
             movingUp = true;
             activated = false;
