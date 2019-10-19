@@ -179,6 +179,7 @@
      <Compile Include="Assets\Packages\GoogleVR\Scripts\Video\GvrVideoPlayerTexture.cs" />
      <Compile Include="Assets\Scripts\FurnitureInteraction.cs" />
      <Compile Include="Assets\Scripts\GazeInteraction.cs" />
+     <Compile Include="Assets\Scripts\HoldItem.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <None Include="Assets\Packages\GoogleVR\Shaders\GvrUIOverlayFont.shader" />
      <None Include="Assets\Packages\GoogleVR\Shaders\GvrAdditiveOverlay.shader" />
