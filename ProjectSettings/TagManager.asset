@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - MovingPlatform
+  - Pizza_Empty
+  - Cheese
+  - Meat
+  - Mushroom
+  - Tomato
   layers:
   - Default
   - TransparentFX
