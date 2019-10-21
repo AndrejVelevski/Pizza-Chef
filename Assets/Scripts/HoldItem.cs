@@ -5,7 +5,7 @@ public class HoldItem : MonoBehaviour
 {
     GameObject item;
 
-    public void Update()
+    void Update()
     {
         if (item != null)
         {
@@ -23,7 +23,7 @@ public class HoldItem : MonoBehaviour
                 rb.MovePosition(Camera.main.transform.position + Camera.main.transform.forward);
             }
 
-            if (Input.GetButtonDown("Cancel"))
+            if (Input.GetButtonDown("Fire2"))
             {
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, 5))
                 {

@@ -4,26 +4,13 @@ using UnityEngine;
 
 public class PizzaScript : MonoBehaviour
 {
-
     bool cheeseOn,tomatoOn,mushroomsOn,meatOn;
     int ingredients = 0;
-    public GameObject madePizza;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Material madePizzaMaterial;
 
     void OnCollisionEnter(Collision collision)
     {
-         if (collision.gameObject.tag == "Cheese")
+        if (collision.gameObject.tag == "Cheese")
         {
             Debug.Log("Cheese on PIZZA!");
             cheeseOn = true;
@@ -37,14 +24,14 @@ public class PizzaScript : MonoBehaviour
             ingredients++;
             Destroy(collision.gameObject);
         }
-         else if(collision.gameObject.tag == "Mushroom")
+        else if(collision.gameObject.tag == "Mushroom")
         {
             Debug.Log("Mushroom on PIZZA!");
             mushroomsOn = true;
             ingredients++;
             Destroy(collision.gameObject);
         }
-         else if(collision.gameObject.tag == "Meat")
+        else if(collision.gameObject.tag == "Meat")
         {
             Debug.Log("Meat on PIZZA!");
             meatOn = true;
@@ -53,10 +40,9 @@ public class PizzaScript : MonoBehaviour
         }
 
         //tmp code
-        if(ingredients >= 4 && cheeseOn && tomatoOn && mushroomsOn && meatOn){
-            Instantiate(madePizza, transform.position, transform.rotation);
-
-            Destroy(gameObject);
+        if(ingredients >= 4 && cheeseOn && tomatoOn && mushroomsOn && meatOn)
+        {
+            GetComponent<MeshRenderer>().material = madePizzaMaterial;
         }
         
     }
