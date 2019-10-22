@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -36,7 +37,6 @@ public class LiftButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         platformPosition = movingPlatform.GetComponent<Transform>();
         platformStartingPosition = movingPlatform.GetComponent<Transform>().position;
-        //platformFinalPosition = new Vector3(platformPosition.position.x, platformPosition.position.y + 5, platformPosition.position.z);
 
         rb = movingPlatform.GetComponent<Rigidbody>();
     }
@@ -80,7 +80,6 @@ public class LiftButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnHoverEnter()
     {
-        Debug.Log("Hover On!");
         isHovered = true;
     }
 
@@ -94,33 +93,32 @@ public class LiftButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private void onClick()
     {
         rend.material.color = Color.red;
-
-        Debug.Log("Circle has been clicked!");
+        
         activated = true;
     }
 
     private void movePlatform()
     {
         if(movingUp){
-            //platformPosition.position = Vector3.MoveTowards(platformPosition.position, platformFinalPosition, platformMovingSpeed * Time.deltaTime);
             rb.velocity = new Vector3(0, platformMovingSpeed, 0);
         }
         else{
-            //platformPosition.position = Vector3.MoveTowards(platformPosition.position, platformStartingPosition, platformMovingSpeed * Time.deltaTime);
             rb.velocity = new Vector3(0, -platformMovingSpeed, 0);
         }    
         
         if(platformPosition.position.y >= platformFinalPosition.y){
-            Debug.Log("PIZZA SOLD!");
             movingUp = false;
         }
         else if(platformPosition.position.y <= platformStartingPosition.y){
-            Debug.Log("Lift on starting position!");
             movingUp = true;
             activated = false;
             rend.material.color = Color.white;
         }
     }
+
+    
+
+
 
 }
 

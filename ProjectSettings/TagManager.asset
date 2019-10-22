@@ -10,6 +10,22 @@ TagManager:
   - Meat
   - Mushroom
   - Tomato
+  - FireObject
+  - Mozzarella
+  - Apple
+  - Avocado
+  - Banana
+  - Broccoli
+  - Carrot
+  - Cucumber
+  - Leek
+  - Lemon
+  - Onion
+  - Pear
+  - Furnace
+  - FurnaceBaker
+  - PizzaChecker
+  - Pepperoni
   layers:
   - Default
   - TransparentFX

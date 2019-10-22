@@ -27,7 +27,8 @@ public class HoldItem : MonoBehaviour
             {
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, 5))
                 {
-                    rb.MovePosition(hit.point+Vector3.up*0.05f);
+                    rb.MovePosition(hit.point+Vector3.up*0.1f);
+                    rb.freezeRotation = false;
                 }
                 
                 item = null;
@@ -40,6 +41,9 @@ public class HoldItem : MonoBehaviour
         if (this.item == null)
         {
             this.item = item;
+            Rigidbody rb = item.GetComponent<Rigidbody>();
+            item.transform.eulerAngles = new Vector3(0, 0, 0);
+            rb.freezeRotation = true;
         }
     }
 }
