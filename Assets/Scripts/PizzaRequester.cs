@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public enum Food
 {
@@ -38,8 +39,11 @@ public class PizzaRequester : MonoBehaviour
 
     public TextMeshPro ingredientsText;
     public TextMeshPro scoreText;
+    public TextMeshPro timeText;
 
     int score = 0;
+
+    public float time = 30;
 
     void Start()
     {
@@ -52,6 +56,15 @@ public class PizzaRequester : MonoBehaviour
 
     void Update()
     {
+        if (time > 0)
+        {
+            time -= Time.deltaTime;
+            timeText.text = ((int)time).ToString();
+        }
+
+        if (time <= 0)
+            SceneManager.LoadScene("EndScreen");
+
         if (!waitingForPizza)
         {
             waitingForPizza = true;

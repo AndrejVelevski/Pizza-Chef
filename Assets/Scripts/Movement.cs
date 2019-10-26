@@ -25,5 +25,9 @@ public class Movement : MonoBehaviour
         velocity.y = 0;
 
         controller.Move(velocity);
+
+        Vector3 pos = transform.position;
+        pos.y = 0;
+        transform.position = pos;
     }
 }
