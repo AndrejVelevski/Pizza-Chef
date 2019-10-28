@@ -10,6 +10,11 @@ public class PizzaScript : MonoBehaviour
     float bakeTime;
     bool isDone = false;
     bool isBaking = false;
+	
+	private AudioSource audioSource;
+    public AudioClip addToPizzaSound;
+    public AudioClip sellPizzaSound;
+    public AudioClip bakingDoneSound;
 
     System.Random random = new System.Random();
 
@@ -18,7 +23,8 @@ public class PizzaScript : MonoBehaviour
     void Start()
     {
         bakeTime = random.Next(10,21);
-        takenIng = new bool[16];    
+        takenIng = new bool[16];   
+		audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -31,11 +37,18 @@ public class PizzaScript : MonoBehaviour
             if (bakeTime < 0)
             {
                 isDone = true;
+                audioSource.PlayOneShot(bakingDoneSound);
                 GetComponent<MeshRenderer>().material = madePizzaMaterial;
             }
         }
         
     }
+	
+	void ingredientOnCollision(Collision collision){
+		collision.gameObject.SetActive(false);
+		audioSource.PlayOneShot(addToPizzaSound);
+	}
+	
 
     void OnCollisionEnter(Collision collision)
     {
@@ -43,23 +56,24 @@ public class PizzaScript : MonoBehaviour
         {
             switch (collision.gameObject.tag)
             {
-                case "Apple": ingredients += (int)Food.Apple; collision.gameObject.SetActive(false); takenIng[0] = true; break;
-                case "Avocado": ingredients += (int)Food.Avocado; collision.gameObject.SetActive(false); takenIng[1] = true; break;
-                case "Banana": ingredients += (int)Food.Banana; collision.gameObject.SetActive(false); takenIng[2] = true; break;
-                case "Broccoli": ingredients += (int)Food.Broccoli; collision.gameObject.SetActive(false); takenIng[3] = true; break;
-                case "Carrot": ingredients += (int)Food.Carrot; collision.gameObject.SetActive(false); takenIng[4] = true; break;
-                case "Cheese": ingredients += (int)Food.Cheese; collision.gameObject.SetActive(false); takenIng[5] = true; break;
-                case "Cucumber": ingredients += (int)Food.Cucumber; collision.gameObject.SetActive(false); takenIng[6] = true; break;
-                case "Leek": ingredients += (int)Food.Leek; collision.gameObject.SetActive(false); takenIng[7] = true; break;
-                case "Lemon": ingredients += (int)Food.Lemon; collision.gameObject.SetActive(false); takenIng[8] = true; break;
-                case "Meat": ingredients += (int)Food.Meat; collision.gameObject.SetActive(false); takenIng[9] = true; break;
-                case "Mozzarella": ingredients += (int)Food.Mozzarella; collision.gameObject.SetActive(false); takenIng[10] = true; break;
-                case "Mushroom": ingredients += (int)Food.Mushroom; collision.gameObject.SetActive(false); takenIng[11] = true; break;
-                case "Onion": ingredients += (int)Food.Onion; collision.gameObject.SetActive(false); takenIng[12] = true; break;
-                case "Pear": ingredients += (int)Food.Pear; collision.gameObject.SetActive(false); takenIng[13] = true; break;
-                case "Pepperoni": ingredients += (int)Food.Pepperoni; collision.gameObject.SetActive(false); takenIng[14] = true; break;
-                case "Tomato": ingredients += (int)Food.Tomato; collision.gameObject.SetActive(false); takenIng[15] = true; break;
+                case "Apple": ingredients += (int)Food.Apple; ingredientOnCollision(collision); takenIng[0] = true; break;
+                case "Avocado": ingredients += (int)Food.Avocado; ingredientOnCollision(collision); takenIng[1] = true; break;
+                case "Banana": ingredients += (int)Food.Banana; ingredientOnCollision(collision); takenIng[2] = true; break;
+                case "Broccoli": ingredients += (int)Food.Broccoli; ingredientOnCollision(collision); takenIng[3] = true; break;
+                case "Carrot": ingredients += (int)Food.Carrot; ingredientOnCollision(collision); takenIng[4] = true; break;
+                case "Cheese": ingredients += (int)Food.Cheese; ingredientOnCollision(collision); takenIng[5] = true; break;
+                case "Cucumber": ingredients += (int)Food.Cucumber; ingredientOnCollision(collision); takenIng[6] = true; break;
+                case "Leek": ingredients += (int)Food.Leek; ingredientOnCollision(collision); takenIng[7] = true; break;
+                case "Lemon": ingredients += (int)Food.Lemon; ingredientOnCollision(collision); takenIng[8] = true; break;
+                case "Meat": ingredients += (int)Food.Meat; ingredientOnCollision(collision); takenIng[9] = true; break;
+                case "Mozzarella": ingredients += (int)Food.Mozzarella; ingredientOnCollision(collision); takenIng[10] = true; break;
+                case "Mushroom": ingredients += (int)Food.Mushroom; ingredientOnCollision(collision); takenIng[11] = true; break;
+                case "Onion": ingredients += (int)Food.Onion; ingredientOnCollision(collision); takenIng[12] = true; break;
+                case "Pear": ingredients += (int)Food.Pear; ingredientOnCollision(collision); takenIng[13] = true; break;
+                case "Pepperoni": ingredients += (int)Food.Pepperoni; ingredientOnCollision(collision); takenIng[14] = true; break;
+                case "Tomato": ingredients += (int)Food.Tomato; ingredientOnCollision(collision); takenIng[15] = true; break;
             }
+			
         }
 
         if (collision.gameObject.tag == "FurnaceBaker")
@@ -90,6 +104,7 @@ public class PizzaScript : MonoBehaviour
             }
 
             pizzaRequester.addScore((total - 2*incorrect) * 10 + (isDone?50:-50));
+            audioSource.PlayOneShot(sellPizzaSound);
 
             gameObject.GetComponent<Respawn>().respawn(takenIng);
 
