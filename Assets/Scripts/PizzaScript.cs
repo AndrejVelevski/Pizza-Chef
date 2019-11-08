@@ -47,7 +47,9 @@ public class PizzaScript : MonoBehaviour
 	void ingredientOnCollision(Collision collision){
 		collision.gameObject.SetActive(false);
 		audioSource.PlayOneShot(addToPizzaSound);
-	}
+        GameObject player = GameObject.Find("Player");
+        player.GetComponent<HoldItem>().RemoveItem();
+}
 	
 
     void OnCollisionEnter(Collision collision)

@@ -23,7 +23,7 @@ public class HoldItem : MonoBehaviour
                 rb.MovePosition(Camera.main.transform.position + Camera.main.transform.forward);
             }
 
-            if (Input.GetButtonDown("Fire2"))
+            if (Input.GetButtonDown("Cancel"))
             {
                 if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, 5))
                 {
@@ -45,5 +45,10 @@ public class HoldItem : MonoBehaviour
             item.transform.eulerAngles = new Vector3(0, 0, 0);
             rb.freezeRotation = true;
         }
+    }
+
+    public void RemoveItem()
+    {
+        this.item = null;
     }
 }
