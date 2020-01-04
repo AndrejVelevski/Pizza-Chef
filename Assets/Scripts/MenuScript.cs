@@ -59,7 +59,6 @@ public class MenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnHoverEnter()
     {
         text.color = new Color32(0xE9, 0xF5, 0x9C, 0xFF);
-        //Debug.Log("Hover On!");
         isHovered = true;
     }
 
@@ -78,18 +77,13 @@ public class MenuScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         switch (gameObject.name)
         {
             case "StartText":
-                //Debug.Log("Start");
                 SceneManager.LoadScene(1);
                 break;
-
             case "InstructionsText":
-                //Debug.Log("Instructuion");
                 menuCanvas.SetActive(false);
                 instructionCanvas.SetActive(true);
-
                 break;
             case "ExitText":
-                //Debug.Log("Exit");
                 Application.Quit();
                 break;
         }

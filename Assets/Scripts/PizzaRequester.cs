@@ -63,7 +63,11 @@ public class PizzaRequester : MonoBehaviour
         }
 
         if (time <= 0)
+        {
+            EndScore.finalScore = score;
             SceneManager.LoadScene("EndScreen");
+        }
+            
 
         if (!waitingForPizza)
         {
